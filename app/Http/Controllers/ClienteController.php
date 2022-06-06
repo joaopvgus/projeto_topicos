@@ -14,6 +14,15 @@ class ClienteController extends Controller
 
     public function salvar(Request $request){
         $cliente = new Cliente();
+
+        $validated = $request->validate([
+            'nome' => ['required', 'string', 'max:255'],
+            'telefone' => ['required', 'string', 'max:11'],
+            'cpf' => ['required', 'string', 'min:11','max:11'],
+            'endereco' => ['required', 'string', 'max:255']
+        ]);
+
+
         $cliente->nome = $request->nome;
         $cliente->telefone = $request->telefone;
         $cliente->endereco = $request->endereco;

@@ -9,15 +9,15 @@
                 @csrf
                 <div class="form-group">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome">
+                    <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome" value="{{$cliente->nome}}">
                 </div>
                 <div class="form-group">
                     <label for="nome">Telefone</label>
-                    <input type="text" class="form-control" id="telefone" placeholder="telefone" name="telefone">
+                    <input type="text" class="form-control" id="telefone" placeholder="telefone" name="telefone" value="{{$cliente->telefone}}">
                 </div>
                 <div class="form-group">
                     <label for="nome">Endereco</label>
-                    <input type="text" class="form-control" id="endereco" placeholder="endereco" name="endereco">
+                    <input type="text" class="form-control" id="endereco" placeholder="endereco" name="endereco" value="{{$cliente->endereco}}">
                 </div>
                 <input value="{{$cliente->id}}" name="id" hidden>
                 <button type="submit" class="btn btn-primary">Enviar</button>
