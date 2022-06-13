@@ -1,8 +1,8 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\LivroController;
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('PaginaInicial');
-})->name('Home');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
 
 
 Route::post('/salvar', [ClienteController::class, 'salvar'])->name('salvar');
@@ -31,3 +35,7 @@ Route::get('/listarLivro', [LivroController::class, 'listar'])->name('listarLivr
 Route::get('/deletarLivro/{id}', [LivroController::class, 'deletar'])->name('deletarLivro');
 Route::get('/alterarLivro/{id}', [LivroController::class, 'update'])->name('updateLivro');
 Route::post('/alterarLivro/', [LivroController::class, 'alterar'])->name('alterarLivro');
+
+Route::get('/', function () {
+    return view('PaginaInicial');
+})->name('Home');
