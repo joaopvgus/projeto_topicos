@@ -31,6 +31,12 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{route('listar')}}" >Listar Clientes</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{route('listarLivro')}}" >Listar Livros</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{route('criarLivro')}}" >Criar Livro</a></li>
+        </ul>
     </div>
 </nav>
 </html>
