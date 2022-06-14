@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\LivroController;
+use App\Http\Controllers\EmprestimoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +37,15 @@ Route::get('/listarLivro', [LivroController::class, 'listar'])->name('listarLivr
 Route::get('/deletarLivro/{id}', [LivroController::class, 'deletar'])->name('deletarLivro');
 Route::get('/alterarLivro/{id}', [LivroController::class, 'update'])->name('updateLivro');
 Route::post('/alterarLivro/', [LivroController::class, 'alterar'])->name('alterarLivro');
+
+Route::post('/salvarEmprestimo', [EmprestimoController::class, 'salvar'])->name('salvarEmprestimo');
+Route::get('/criarEmprestimo', [EmprestimoController::class, 'criar'])->name('criarEmprestimo');
+Route::get('/listarEmprestimo', [EmprestimoController::class, 'listar'])->name('listarEmprestimo');
+Route::get('/getClientesELivros', [EmprestimoController::class, 'getClientesELivros'])->name('getClientesELivros');
+Route::get('/deletarEmprestimo/{id}', [EmprestimoController::class, 'deletar'])->name('deletarEmprestimo');
+Route::get('/alterarEmprestimo/{id}', [EmprestimoController::class, 'update'])->name('updateEmprestimo');
+Route::post('/alterarEmprestimo/', [EmprestimoController::class, 'alterar'])->name('alterarEmprestimo');
+Route::get('/finalizarEmprestimo/{id}', [EmprestimoController::class, 'finalizar'])->name('finalizarEmprestimo');
 
 Route::get('/', function () {
     return view('PaginaInicial');

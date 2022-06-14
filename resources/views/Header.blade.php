@@ -51,6 +51,12 @@
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{route('criarLivro')}}" >Criar Livro</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{route('getClientesELivros')}}" >Emprestar Livro</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{{route('listarEmprestimo')}}" >Listar Empréstimos</a></li>
+        </ul>
     </div>
 </nav>
 </html>
