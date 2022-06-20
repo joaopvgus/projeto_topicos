@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Livro;
+use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 
 class LivroController extends Controller
@@ -36,7 +37,9 @@ class LivroController extends Controller
 
     public function listar()
     {
-        $livros = Livro::all();
+
+        $emps = Emprestimo::all()->pluck('idLivro');
+        $livros = Livro::whereNotIn('id',$emps)->get();
         return view('ListaLivro')->with(['livros' => $livros]);
     }
 

@@ -30,7 +30,8 @@ class EmprestimoController extends Controller
 
     public function getClientesELivros()
     {
-        $livros = Livro::all();
+        $emps = Emprestimo::all()->pluck('idLivro');
+        $livros = Livro::whereNotIn('id',$emps)->get();
         $clientes = Cliente::all();
         return view('CadastroEmprestimo')->with(['clientes' => $clientes , 'livros' => $livros]);
     }

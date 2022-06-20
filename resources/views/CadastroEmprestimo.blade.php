@@ -14,7 +14,7 @@
                         <select class="form-control" id="tituloLivro">
                             <option selected>Choose...</option>
                             @foreach($livros as $livro)
-                            <option>{{$livro->titulo}}</option>
+                                <option>{{$livro->titulo}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -24,7 +24,7 @@
                         <select class="form-control" id="nomeCliente">
                             <option selected>Choose...</option>
                             @foreach($clientes as $cliente)
-                            <option>{{$cliente->nome}}</option>
+                                <option>{{$cliente->nome}}</option>
                             @endforeach
                         </select>
                     </div>
