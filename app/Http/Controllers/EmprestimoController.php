@@ -18,6 +18,10 @@ class EmprestimoController extends Controller
     {
         $emprestimo = new Emprestimo();
 
+        $validated = $request->validate([
+            'dataFinal' => ['required', 'date']
+        ]);
+
         $emprestimo->idLivro = $request->idLivro;
         $emprestimo->tituloLivro = $request->tituloLivro;
         $emprestimo->idCliente = $request->idCliente;

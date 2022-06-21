@@ -17,12 +17,14 @@ class LivroController extends Controller
     {
         $livro = new Livro();
 
-        // $validated = $request->validate([
-        //     'titulo' => ['required', 'string', 'max:255'],
-        //     'descricao' => ['required', 'string', 'max:11'],
-        //     'editora' => ['required', 'string', 'min:11', 'max:11'],
-        //     'paginas' => ['required', 'string', 'max:255']
-        // ]);
+        $validated = $request->validate([
+            'titulo' => ['required', 'string', 'max:255'],
+            'descricao' => ['required', 'string', 'max:255'],
+            'paginas' => ['required', 'string', 'max:255'],
+            'editora' => ['required', 'string', 'max:255'],
+            'ano' => ['required', 'string','min:4', 'max:4'],
+            'isbn' => ['required', 'string', 'min:10', 'max:13'],
+        ]);
 
 
         $livro->titulo = $request->titulo;
