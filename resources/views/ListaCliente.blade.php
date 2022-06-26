@@ -4,6 +4,15 @@
 <body>
 <div class="container">
     <div class="row ">
+        @if(session('sucesso'))
+            <div class="row">
+                <div class="col-md-12" style="margin-top: 5px;">
+                    <div class="alert alert-success">
+                        <p>{{session('sucesso')}}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
         <table class="table">
             <thead class="thead-dark">
             <tr>
@@ -24,6 +33,7 @@
                     <td>{{$cliente->telefone}}</td>
                     <td>{{$cliente->endereco}}</td>
                     <td><a class="btn" type='button' href="{{route('deletar',['id' => $cliente->id])}}">Deletar</a></td>
+
                     <td><a class="btn" type='button' href="{{route('update',['id' => $cliente->id])}}">Alterar</a></td>
                 </tr>
             @endforeach

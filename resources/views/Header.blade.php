@@ -9,6 +9,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
+
 <nav class="navbar navbar-expand-sm navbar-inverse navbar-dark">
     <div class="container-fluid ">
         <div class="navbar-header ">
@@ -29,16 +30,7 @@
                 <li><a href="{{ route('login') }}" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             @endauth
         </ul>
-        <form class="navbar-form navbar-right" action="/action_page.php">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Pesquisar">
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{route('listar')}}" >Listar Clientes</a></li>
         </ul>
@@ -59,4 +51,13 @@
         </ul>
     </div>
 </nav>
+@if(session('sucesso'))
+    <div class="row">
+        <div class="col-md-12" style="margin-top: 5px;">
+            <div class="alert alert-success">
+                <p>{{session('sucesso')}}</p>
+            </div>
+        </div>
+    </div>
+@endif
 </html>

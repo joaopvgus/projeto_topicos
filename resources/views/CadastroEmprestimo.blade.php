@@ -30,13 +30,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="dataInicio">Data do empréstimo</label>
-                        <input type="text" class="form-control descricao" id="dataInicio" name="dataInicio">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dataFinal">Data de entrega</label>
-                        <input type="text" class="form-control descricao" id="dataFinal" name="dataFinal">
+                        <label for="dataFinal">Dias de emprestimo</label>
+                        <input type="number" value="15" min="1" max="60" step="1" id="dataFinal" name="dataFinal"/>
                     </div>
 
                     <input value="{{$livro->id}}" name="idLivro" hidden>

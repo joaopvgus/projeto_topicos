@@ -40,22 +40,30 @@ class LivroController extends Controller
     public function listar()
     {
 
-        $emps = Emprestimo::all()->pluck('idLivro');
-        $livros = Livro::whereNotIn('id',$emps)->get();
+
+        $livros = Livro::all();
         return view('ListaLivro')->with(['livros' => $livros]);
     }
 
     public function deletar($id)
     {
         $livro = Livro::find($id);
-        $livro->delete();
-        return redirect()->back()->with(['sucesso' => "Deletou"]);;
+        if(Emprestimo::where('idLivro',$id)->first() != null){
+            return redirect()->back()->with(['sucesso' => "Este livro esta emprestado"]);;
+        }else {
+            $livro->delete();
+            return redirect()->back()->with(['sucesso' => "Deletou"]);;
+        }
     }
 
     public function update($id)
     {
         $livro = Livro::find($id);
-        return view('LivroAlterar')->with(['livro' => $livro]);
+        if(Emprestimo::where('idLivro',$id)->first() != null){
+            return redirect()->back()->with(['sucesso' => "Este livro esta emprestado"]);;
+        }else {
+            return view('LivroAlterar')->with(['livro' => $livro]);
+        }
     }
 
     public function alterar(Request $request)

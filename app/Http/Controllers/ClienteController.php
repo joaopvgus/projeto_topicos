@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -38,13 +39,21 @@ class ClienteController extends Controller
 
     public function deletar($id){
         $cliente= Cliente::find($id);
-        $cliente->delete();
+        if(Emprestimo::where('idCliente',$id)->first() != null){
+            return redirect()->back()->with(['sucesso' => "Este cliente possui emprestimos em andamento"]);;
+        }else{
+            $cliente->delete();
+        }
         return redirect()->back()->with(['sucesso' => "Deletou"]);;
     }
 
     public function update($id){
         $cliente = cliente::find($id);
-        return view('ClienteAlterar')->with(['cliente' => $cliente]);
+        if(Emprestimo::where('idCliente',$id)->first() != null){
+            return redirect()->back()->with(['sucesso' => "Este cliente possui emprestimos em andamento"]);;
+        }else {
+            return view('ClienteAlterar')->with(['cliente' => $cliente]);
+        }
     }
 
     public function alterar(Request $request){

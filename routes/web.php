@@ -24,9 +24,10 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
-Route::get('/listarLivro', [LivroController::class, 'listar'])->name('listarLivro');
+
 
 Route::group(['middleware' => ['auth']], function() {
+    Route::get('/listarLivro', [LivroController::class, 'listar'])->name('listarLivro');
     Route::post('/salvar', [ClienteController::class, 'salvar'])->name('salvar');
     Route::get('/criar', [ClienteController::class, 'criar'])->name('criar');
     Route::get('/listar', [ClienteController::class, 'listar'])->name('listar');

@@ -6,28 +6,34 @@ use App\Models\Emprestimo;
 use App\Models\Cliente;
 use App\Models\Livro;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class EmprestimoController extends Controller
 {
     public function criar()
     {
-        return view('CadastroEmprestimo');
+
+
+            return view('CadastroEmprestimo');
+
     }
 
     public function salvar(Request $request)
     {
         $emprestimo = new Emprestimo();
 
-        $validated = $request->validate([
-            'dataFinal' => ['required', 'date']
-        ]);
+
 
         $emprestimo->idLivro = $request->idLivro;
+
         $emprestimo->tituloLivro = $request->tituloLivro;
         $emprestimo->idCliente = $request->idCliente;
         $emprestimo->nomeCliente = $request->nomeCliente;
-        $emprestimo->dataInicio = $request->dataInicio;
-        $emprestimo->dataFinal = $request->dataFinal;
+        $dataIni =  Carbon::today('America/Recife');
+        $emprestimo->dataInicio = $dataIni->toDateString();
+
+        $dtf = $dataIni->addDays($request->dataFinal);
+        $emprestimo->dataFinal = $dtf->toDateString();
         $emprestimo->save();
         return redirect(route('Home'))->with(['sucesso' => "Livro " . $emprestimo->tituloLivro . " emprestado com sucesso"]);
     }
@@ -37,7 +43,15 @@ class EmprestimoController extends Controller
         $emps = Emprestimo::all()->pluck('idLivro');
         $livros = Livro::whereNotIn('id',$emps)->get();
         $clientes = Cliente::all();
-        return view('CadastroEmprestimo')->with(['clientes' => $clientes , 'livros' => $livros]);
+
+        if($clientes->first() == null){
+            return redirect(route('Home'))->with(['sucesso' => "Não existe nenhum cliente para realizar o emprestimo"]);;
+        }
+        else if($livros->first() == null){
+            return redirect(route('Home'))->with(['sucesso' => "Não existe nenhum livro para realizar o emprestimo"]);;
+        }else {
+            return view('CadastroEmprestimo')->with(['clientes' => $clientes, 'livros' => $livros]);
+        }
     }
 
     public function listar()

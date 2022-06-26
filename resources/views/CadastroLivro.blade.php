@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="paginas">paginas</label>
-                    <input type="text" class="form-control" id="paginas" placeholder="paginas" name="paginas">
+                    <input type="number" class="form-control" id="paginas" placeholder="paginas" name="paginas">
                     @error('paginas')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
